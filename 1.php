@@ -25,4 +25,3 @@ $result = wordCount($input);
 foreach ($result as $word => $count) {
     echo $word . " => " . $count . "\n";
 }
-?>
