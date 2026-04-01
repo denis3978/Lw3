@@ -1,5 +1,5 @@
 <?php
-function toSnakeCase($input) {
+function toSnakeCase(string $input): string {
     $result = "";
     for ($i = 0; $i < strlen($input); $i++) {
         $char = $input[$i];
@@ -15,8 +15,5 @@ function toSnakeCase($input) {
     return $result;
 }
 
-echo "Введите строку в camelCase: ";
-$input = trim(fgets(STDIN));
-
-echo toSnakeCase($input) . "\n";
+echo toSnakeCase("helloWorldPhp") . "\n";
 ?>
