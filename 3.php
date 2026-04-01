@@ -1,5 +1,5 @@
 <?php
-function chunkArray(array $items, int $size): array {
+function chunkArray($items, $size) {
     if ($size <= 0) {
         return [];
     }
@@ -26,6 +26,16 @@ function chunkArray(array $items, int $size): array {
     return $result;
 }
 
-$arr = [1, 2, 3, 4, 5];
-print_r(chunkArray($arr, 2));
+echo "Введите числа через пробел: ";
+$arr_input = trim(fgets(STDIN));
+$arr = array_map('intval', explode(' ', $arr_input));
+
+echo "Введите размер подмассива: ";
+$size = (int)trim(fgets(STDIN));
+
+$result = chunkArray($arr, $size);
+
+foreach ($result as $chunk) {
+    echo "[" . implode(", ", $chunk) . "]\n";
+}
 ?>
