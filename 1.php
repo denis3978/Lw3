@@ -1,22 +1,39 @@
 <?php
-function wordCount(string $text): array {
-    $text = strtolower($text);
-    $text = trim($text);
-    $words = explode(" ", $text);
+function chunkArray($items, $size) {
+    if ($size <= 0) {
+        return [];
+    }
     
     $result = [];
-    foreach ($words as $word) {
-        if ($word != "") {
-            if (isset($result[$word])) {
-                $result[$word]++;
-            } else {
-                $result[$word] = 1;
-            }
+    $temp = [];
+    $i = 0;
+    
+    foreach ($items as $item) {
+        $temp[] = $item;
+        $i++;
+        
+        if ($i == $size) {
+            $result[] = $temp;
+            $temp = [];
+            $i = 0;
         }
     }
+    
+    if (!empty($temp)) {
+        $result[] = $temp;
+    }
+    
     return $result;
 }
 
-$text = "hello world hello";
-print_r(wordCount($text));
+echo "Введите числа через пробел: ";
+$arr_input = trim(fgets(STDIN));
+$arr = array_map('intval', explode(' ', $arr_input));
+
+echo "Введите размер подмассива: ";
+$size = (int)trim(fgets(STDIN));
+
+$result = chunkArray($arr, $size);
+
+print_r($result);
 ?>
