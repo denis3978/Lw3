@@ -19,4 +19,3 @@ echo "Введите строку в camelCase: ";
 $input = trim(fgets(STDIN));
 
 echo toSnakeCase($input) . "\n";
-?>
