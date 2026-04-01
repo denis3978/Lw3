@@ -38,4 +38,3 @@ $result = chunkArray($arr, $size);
 foreach ($result as $chunk) {
     echo "[" . implode(", ", $chunk) . "]\n";
 }
-?>
