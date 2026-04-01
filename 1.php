@@ -1,5 +1,5 @@
 <?php
-function wordCount($text) {
+function wordCount(string $text): array {
     $text = strtolower($text);
     $text = trim($text);
     $words = explode(" ", $text);
@@ -17,12 +17,6 @@ function wordCount($text) {
     return $result;
 }
 
-echo "Введите текст: ";
-$input = trim(fgets(STDIN));
-
-$result = wordCount($input);
-
-foreach ($result as $word => $count) {
-    echo $word . " => " . $count . "\n";
-}
+$text = "hello world hello";
+print_r(wordCount($text));
 ?>
