@@ -1,27 +1,19 @@
 <?php
-function wordCount($text) {
+
+function wordCount(string $text): array
+{
     $text = strtolower($text);
-    $text = trim($text);
-    $words = explode(" ", $text);
-    
+    $words = str_word_count($text, 1);
     $result = [];
+
     foreach ($words as $word) {
-        if ($word != "") {
-            if (isset($result[$word])) {
-                $result[$word]++;
-            } else {
-                $result[$word] = 1;
-            }
+        if (!isset($result[$word])) {
+            $result[$word] = 0;
         }
+        $result[$word]++;
     }
+
     return $result;
 }
 
-echo "Введите текст: ";
-$input = trim(fgets(STDIN));
-
-$result = wordCount($input);
-
-foreach ($result as $word => $count) {
-    echo $word . " => " . $count . "\n";
-}
+var_dump(wordCount("hello world hello"));
