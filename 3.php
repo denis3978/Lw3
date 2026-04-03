@@ -1,40 +1,28 @@
 <?php
-function chunkArray($items, $size) {
+
+function chunkArray(array $items, int $size): array
+{
     if ($size <= 0) {
         return [];
     }
-    
+
     $result = [];
-    $temp = [];
-    $i = 0;
-    
+    $chunk = [];
+
     foreach ($items as $item) {
-        $temp[] = $item;
-        $i++;
-        
-        if ($i == $size) {
-            $result[] = $temp;
-            $temp = [];
-            $i = 0;
+        $chunk[] = $item;
+
+        if (count($chunk) == $size) {
+            $result[] = $chunk;
+            $chunk = [];
         }
     }
-    
-    if (!empty($temp)) {
-        $result[] = $temp;
+
+    if (!empty($chunk)) {
+        $result[] = $chunk;
     }
-    
+
     return $result;
 }
 
-echo "Введите числа через пробел: ";
-$arr_input = trim(fgets(STDIN));
-$arr = array_map('intval', explode(' ', $arr_input));
-
-echo "Введите размер подмассива: ";
-$size = (int)trim(fgets(STDIN));
-
-$result = chunkArray($arr, $size);
-
-foreach ($result as $chunk) {
-    echo "[" . implode(", ", $chunk) . "]\n";
-}
+var_dump(chunkArray([1, 2, 3, 4, 5], 2));
