@@ -1,21 +1,13 @@
 <?php
-function toSnakeCase($input) {
-    $result = "";
-    for ($i = 0; $i < strlen($input); $i++) {
-        $char = $input[$i];
-        if ($char >= 'A' && $char <= 'Z') {
-            if ($i > 0) {
-                $result .= "_";
-            }
-            $result .= strtolower($char);
-        } else {
-            $result .= $char;
-        }
-    }
-    return $result;
+
+function toSnakeCase(string $input): string
+{
+    $result = preg_replace('/([a-z0-9])([A-Z])/', '$1_$2', $input);
+    $result = preg_replace('/([A-Z])([A-Z][a-z])/', '$1_$2', $result);
+    return strtolower($result);
 }
 
-echo "Введите строку в camelCase: ";
-$input = trim(fgets(STDIN));
-
-echo toSnakeCase($input) . "\n";
+var_dump(toSnakeCase("userName"));
+var_dump(toSnakeCase("HTMLParser"));
+var_dump(toSnakeCase("getUserById"));
+var_dump(toSnakeCase("XMLHttpRequest"));
